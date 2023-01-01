@@ -112,6 +112,7 @@ public class Contact implements Comparable<Contact> {
         Contact contact = (Contact) o;
         return zip == contact.zip && phoneNumber == contact.phoneNumber && firstName.equals(contact.firstName) && lastName.equals(contact.lastName) && address.equals(contact.address) && city.equals(contact.city) && state.equals(contact.state) && email.equals(contact.email);
     }
+
     @Override
     public int compareTo(Contact o) {
         return 0;
