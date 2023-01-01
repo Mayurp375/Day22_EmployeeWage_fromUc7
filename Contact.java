@@ -1,6 +1,7 @@
 package classProblemByAmolMateSir.Day22PracticeProblem.addressBook;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -13,6 +14,7 @@ public class Contact implements Comparable<Contact> {
     String email;
     int zip;
     long phoneNumber;
+    ArrayList<Contact> contacts = new ArrayList<>();
 
     public Contact(String firstName, String lastName, String address, String city, String state, String email, int zip, long phoneNumber) {
         this.firstName = firstName;
@@ -23,6 +25,10 @@ public class Contact implements Comparable<Contact> {
         this.email = email;
         this.zip = zip;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Contact() {
+
     }
 
     @Override
@@ -115,7 +121,19 @@ public class Contact implements Comparable<Contact> {
 
     @Override
     public int compareTo(Contact o) {
+
         return 0;
+    }
+
+//ability to find city and state vise
+    public void searchPerson(String findCity, String findState) {
+        for (Contact contact : contacts) {
+            if (findCity == this.getCity() && findState == this.getState()) {
+                System.out.println(contact.getFirstName());
+            }else {
+                System.out.println(findCity + " and " + findState + " not found in contact.");
+            }
+        }
     }
 
     @Override
@@ -134,14 +152,14 @@ public class Contact implements Comparable<Contact> {
 
         contacts.add(contactOne);
         if (contactOne.equals(contactTwo))
-        contacts.add(contactTwo);
+            contacts.add(contactTwo);
         contacts.add(contactThree);
         contacts.add(contactFour);
 
 
         System.out.println("welcome to address book. " +
                 "select any of the choice in the below " +
-                "\n Hint -> 1. Display contact 2. edit existing contact 3.remove existing contact ");
+                "\n Hint -> 1. Display contact 2. edit existing contact 3.remove existing contact 4.Search by City or State");
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
         if (choice == 1) {
@@ -279,10 +297,18 @@ public class Contact implements Comparable<Contact> {
             } else {
                 System.out.println("Invalid");
             }
-        } else {
+        } else if(choice == 4){   // ability find city and state
+            System.out.println("enter City and State");
+            String city = scanner.next();
+            System.out.println("city ->");
+            String state = scanner.next();
+            System.out.println("state ->");
+
+            Contact cont = new Contact();
+          cont.searchPerson(city,state);
+        }
+        else {
             System.out.println("Invalid input");
         }
     }
-
-
 }
